@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: skribbl-clone
+    env: node
+    buildCommand: |
+      cd frontend && npm install && npm run build && cp -r dist ../backend/dist
+      cd ../backend && npm install
+    startCommand: cd backend && node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
