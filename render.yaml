@@ -19,12 +19,12 @@ services:
   # Frontend Service
   - type: web
     name: skribbl-frontend
-    env: static-site
+    env: node
     region: singapore
     plan: free
-    buildCommand: npm install && npm run build
-    staticPublishPath: ./dist
-    rootDir: frontend
+    buildCommand: cd frontend && npm install && npm run build
+    startCommand: cd frontend && npx serve -s dist -l $PORT
+    rootDir: .
     envVars:
       - key: VITE_SOCKET_URL
         value: https://skribbl-backend.onrender.com
