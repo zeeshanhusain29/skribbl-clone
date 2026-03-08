@@ -16,12 +16,29 @@ export default function RoomPage() {
   const { state, dispatch } = useGame();
   const [kicked, setKicked] = useState(false);
 
+  console.log('RoomPage loaded:', { roomId, hasPlayer: !!state.player, hasSocket: !!socket });
+
   // If no player state, redirect to home with room code
   useEffect(() => {
     if (!state.player && socket) {
+      console.log('No player state, redirecting to home with room code:', roomId);
       navigate(`/?join=${roomId}`);
     }
   }, [state.player, socket, navigate, roomId]);
+
+  // Handle room not found or invalid room
+  useEffect(() => {
+    if (socket) {
+      socket.on('error', ({ message }) => {
+        console.error('Room error:', message);
+        if (message.includes('not found') || message.includes('Room not found')) {
+          navigate('/?error=room_not_found');
+        }
+      });
+
+      return () => socket.off('error');
+    }
+  }, [socket, navigate]);
 
   useEffect(() => {
     if (!socket) return;

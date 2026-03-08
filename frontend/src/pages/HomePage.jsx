@@ -24,12 +24,41 @@ export default function HomePage() {
   });
   const [isPrivate, setIsPrivate] = useState(false);
 
-  // Check for room in URL
+  // Check for room in URL (both pathname and query params)
   useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const joinParam = urlParams.get('join');
+    const errorParam = urlParams.get('error');
     const path = window.location.pathname;
-    const match = path.match(/\/room\/([A-Z0-9]+)/i);
-    if (match) {
-      setRoomCode(match[1].toUpperCase());
+    const pathMatch = path.match(/\/room\/([A-Z0-9]+)/i);
+
+    console.log('URL check:', { path, search: window.location.search, joinParam, errorParam, pathMatch });
+
+    let roomCodeFromUrl = null;
+
+    // Check pathname first (direct /room/ABC123 links)
+    if (pathMatch) {
+      roomCodeFromUrl = pathMatch[1].toUpperCase();
+    }
+    // Check query param (redirects from RoomPage)
+    else if (joinParam) {
+      roomCodeFromUrl = joinParam.toUpperCase();
+    }
+
+    if (roomCodeFromUrl) {
+      console.log('Found room code from URL:', roomCodeFromUrl);
+      setRoomCode(roomCodeFromUrl);
+      setTab('join');
+      // Clean up URL by removing query param
+      if (joinParam) {
+        const newUrl = window.location.pathname;
+        window.history.replaceState({}, '', newUrl);
+      }
+    }
+
+    // Handle error messages
+    if (errorParam === 'room_not_found') {
+      setError('Room not found or has ended. Please check the room code.');
       setTab('join');
     }
   }, []);
