@@ -3,6 +3,7 @@ const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 const Room = require('./Room');
 const Player = require('./Player');
 
@@ -28,10 +29,15 @@ app.use(express.json());
 
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../frontend/dist')));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
-  });
+  const distPath = path.join(__dirname, '../frontend/dist');
+  if (fs.existsSync(distPath)) {
+    app.use(express.static(distPath));
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(distPath, '/index.html'));
+    });
+  } else {
+    console.warn('⚠️  Frontend dist folder not found. Serving API only.');
+  }
 }
 
 // In-memory store
