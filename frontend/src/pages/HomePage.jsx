@@ -69,10 +69,15 @@ export default function HomePage() {
 
   const fetchPublicRooms = async () => {
     try {
-      const res = await fetch('/api/rooms');
+      const backendUrl = import.meta.env.VITE_BACKEND_URL || 
+        (window.location.hostname === 'localhost' ? 'http://localhost:3001' : window.location.origin);
+      const res = await fetch(`${backendUrl}/api/rooms`);
       const data = await res.json();
       setPublicRooms(data);
-    } catch {}
+    } catch (error) {
+      console.error('Failed to fetch public rooms:', error);
+    }
+  };
   };
 
   const handleCreate = () => {
