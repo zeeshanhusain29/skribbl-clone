@@ -266,6 +266,7 @@ io.on('connection', (socket) => {
       player: player.toJSON(),
       room: {
         id: room.id,
+        hostId: room.hostId,
         isPrivate: room.isPrivate,
         settings: room.game.settings,
         players: room.getPlayerList()
