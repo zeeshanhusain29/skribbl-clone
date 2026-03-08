@@ -14,7 +14,7 @@ services:
       - key: PORT
         value: 3001
       - key: FRONTEND_URL
-        fromSecret: frontend_url
+        value: https://skribbl-frontend.onrender.com
 
   # Frontend Service
   - type: web
@@ -27,12 +27,6 @@ services:
     rootDir: frontend
     envVars:
       - key: VITE_SOCKET_URL
-        fromSecret: backend_url
+        value: https://skribbl-backend.onrender.com
       - key: VITE_BACKEND_URL
-        fromSecret: backend_url
-
-secrets:
-  - key: frontend_url
-    value: https://skribbl-frontend.onrender.com
-  - key: backend_url
-    value: https://skribbl-backend.onrender.com
+        value: https://skribbl-backend.onrender.com
