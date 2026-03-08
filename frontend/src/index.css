@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #FF6B6B;
+  --primary-dark: #ee5252;
+  --secondary: #4ECDC4;
+  --accent: #FFE66D;
+  --accent2: #A855F7;
+  --bg: #1a1a2e;
+  --bg2: #16213e;
+  --bg3: #0f3460;
+  --card: #1e2a4a;
+  --card2: #253558;
+  --text: #f0f4ff;
+  --text-muted: #8892b0;
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --border: rgba(255,255,255,0.08);
+  --shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+html, body { height: 100%; font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+#root { min-height: 100vh; }
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 3px; }
+
+button { cursor: pointer; font-family: 'Nunito', sans-serif; font-weight: 700; border: none; outline: none; transition: all 0.15s ease; }
+button:active { transform: scale(0.97); }
+
+input, select, textarea { font-family: 'Nunito', sans-serif; }
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 24px; border-radius: var(--radius-sm); font-size: 1rem;
+  font-weight: 800; letter-spacing: 0.02em; transition: all 0.15s ease;
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background: var(--primary); color: white;
+  box-shadow: 0 4px 0 var(--primary-dark), 0 6px 20px rgba(255,107,107,0.3);
+}
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--primary-dark); }
+
+.btn-secondary {
+  background: var(--secondary); color: var(--bg);
+  box-shadow: 0 4px 0 #3ab8b0, 0 6px 20px rgba(78,205,196,0.3);
+}
+.btn-secondary:hover { background: #3ab8b0; transform: translateY(-1px); }
+.btn-secondary:active { transform: translateY(2px); box-shadow: 0 2px 0 #3ab8b0; }
+
+.btn-ghost {
+  background: var(--card2); color: var(--text); border-color: var(--border);
+}
+.btn-ghost:hover { background: var(--bg3); }
+
+.btn-danger { background: var(--danger); color: white; }
+.btn-danger:hover { background: #ef4444; }
+
+.btn-sm { padding: 8px 16px; font-size: 0.875rem; }
+.btn-lg { padding: 16px 36px; font-size: 1.125rem; border-radius: var(--radius); }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg2);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 0 0 0 3px rgba(78,205,196,0.2);
+}
+.input::placeholder { color: var(--text-muted); font-weight: 500; }
+
+.label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes pop { 0% { transform: scale(0.8); opacity: 0; } 70% { transform: scale(1.05); } 100% { transform: scale(1); opacity: 1; } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }
+@keyframes gradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+.animate-fadeIn { animation: fadeIn 0.3s ease forwards; }
+.animate-pop { animation: pop 0.3s ease forwards; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-pulse { animation: pulse 1.5s ease infinite; }
+.animate-bounce { animation: bounce 0.5s ease infinite; }

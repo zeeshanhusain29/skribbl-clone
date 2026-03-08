@@ -1,0 +1,90 @@
+.canvas-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: 0;
+}
+
+.canvas-wrap {
+  flex: 1;
+  min-height: 0;
+  background: #FFFFFF;
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.drawing-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.cursor-pen { cursor: crosshair; }
+.cursor-eraser { cursor: cell; }
+.cursor-fill { cursor: cell; }
+.cursor-default { cursor: default; }
+
+.drawing-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0 0 var(--radius) var(--radius);
+  flex-wrap: wrap;
+}
+
+.tool-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: var(--bg2);
+  border-radius: var(--radius-sm);
+}
+
+.tool-btn {
+  width: 40px; height: 40px;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  font-size: 1.1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+  border: 2px solid transparent;
+}
+.tool-btn:hover { background: var(--card2); }
+.tool-btn.active {
+  background: var(--bg3);
+  border-color: var(--secondary);
+}
+
+.action-btn:hover { background: rgba(248,113,113,0.15); }
+
+.sizes-group { gap: 6px; padding: 6px 10px; }
+.size-btn {
+  background: transparent;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  padding: 4px 6px;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.size-btn:hover { background: var(--card2); }
+.size-btn.active { border-color: var(--secondary); background: var(--bg3); }
+
+.colors-group { gap: 4px; padding: 6px; flex-wrap: wrap; max-width: 180px; }
+.color-btn {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+.color-btn:hover { transform: scale(1.15); }
+.color-btn.active { outline-color: var(--secondary); transform: scale(1.1); }
