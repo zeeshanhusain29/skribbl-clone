@@ -78,7 +78,6 @@ export default function HomePage() {
       console.error('Failed to fetch public rooms:', error);
     }
   };
-  };
 
   const handleCreate = () => {
     if (!playerName.trim()) return setError('Enter your name!');
