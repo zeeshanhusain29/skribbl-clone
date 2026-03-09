@@ -14,7 +14,7 @@ services:
       - key: PORT
         value: 3001
       - key: FRONTEND_URL
-        value: https://skribbl-frontend.onrender.com
+        value: YOUR_FRONTEND_URL_HERE
 
   # Frontend Service
   - type: web
@@ -27,6 +27,6 @@ services:
     startCommand: npm run start
     envVars:      - key: PORT
         value: 3000      - key: VITE_SOCKET_URL
-        value: https://skribbl-backend-qoor.onrender.com
+        value: YOUR_BACKEND_URL_HERE
       - key: VITE_BACKEND_URL
-        value: https://skribbl-backend-qoor.onrender.com
+        value: YOUR_BACKEND_URL_HERE

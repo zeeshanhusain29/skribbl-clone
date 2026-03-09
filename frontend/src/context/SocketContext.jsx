@@ -6,14 +6,8 @@ const SocketContext = createContext(null);
 // Production URLs - update these with your actual deployed URLs
 const PRODUCTION_BACKEND_URL = 'https://skribbl-backend.onrender.com';
 
-const SOCKET_URL = (() => {
-  // For local development
-  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    return 'http://localhost:3001';
-  }
-  // For production - use environment variable
-  return import.meta.env.VITE_SOCKET_URL || PRODUCTION_BACKEND_URL;
-})();
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL ||
+  (window.location.hostname === 'localhost' ? 'http://localhost:3001' : PRODUCTION_BACKEND_URL);
 
 console.log('Connecting to socket URL:', SOCKET_URL);
 
