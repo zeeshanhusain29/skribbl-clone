@@ -12,7 +12,10 @@ const server = http.createServer(app);
 
 const allowedOrigins = process.env.NODE_ENV === 'production'
   ? [process.env.FRONTEND_URL || '*']
-  : ['http://localhost:5173', 'http://localhost:3000', 'http://127.0.0.1:5173'];
+  : [/^http:\/\/localhost(:\d+)?$/, /^http:\/\/127\.0\.0\.1(:\d+)?$/];
+
+// Note: in development we allow any localhost port so Vite can pick 5173, 5174, 
+// 5175, etc. The regex above covers that pattern.
 
 const io = new Server(server, {
   cors: {
