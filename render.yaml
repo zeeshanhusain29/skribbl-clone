@@ -22,9 +22,9 @@ services:
     env: node
     region: singapore
     plan: free
-    buildCommand: cd frontend && npm install && npm run build
-    startCommand: cd frontend && npx serve -s dist -l $PORT
-    rootDir: .
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
     envVars:
       - key: VITE_SOCKET_URL
         value: YOUR_BACKEND_URL_HERE
